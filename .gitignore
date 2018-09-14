@@ -1,0 +1,8 @@
+dist/
+.temp/
+.rn_temp/
+node_modules/
+.idea/
+.vscode/
+package-lock.json
+.cache/
