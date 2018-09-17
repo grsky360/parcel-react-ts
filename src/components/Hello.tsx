@@ -1,10 +1,14 @@
 import { default as React, Component } from 'react'
 
+interface HelloProps {
+    msg?: string
+}
+
 interface HelloStates {
     level: number
 }
 
-export default class Hello extends Component<any, HelloStates> {
+export default class Hello extends Component<HelloProps, HelloStates> {
     state = {
         level: 0
     }
@@ -28,7 +32,8 @@ export default class Hello extends Component<any, HelloStates> {
     render() {
         return (
             <div>
-                <h1>{ this.state.level }</h1>
+                <h1>{ this.props.msg || this.props.children }</h1>
+                <h2>{ this.state.level }</h2>
                 <button onClick={this.decrement}>-</button>
                 <button onClick={this.increment}>+</button>
             </div>

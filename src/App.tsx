@@ -1,12 +1,19 @@
 import { default as React, Component } from 'react'
-import Hello from './components/Hello'
+import { Route, HashRouter } from 'react-router-dom'
+import Home from './views/Home'
+import HelloW from './views/helloW'
 
 export default class App extends Component {
+
     render() {
         return (
-            <div>
-                <Hello />
-            </div>
+            <HashRouter>
+                <div>
+                    <Route exact path={'/'} component={Home} />
+                    <Route path={'/home'} component={Home} />
+                    <Route path={'/hellow'} component={HelloW} />
+                </div>
+            </HashRouter>
         )
     }
 }
