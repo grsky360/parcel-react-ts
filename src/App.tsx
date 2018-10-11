@@ -10,7 +10,6 @@ export default class App extends Component {
             <HashRouter>
                 <div>
                     <Route exact path={'/'} component={Home} />
-                    <Route path={'/home'} component={Home} />
                     <Route path={'/hellow'} component={HelloW} />
                 </div>
             </HashRouter>

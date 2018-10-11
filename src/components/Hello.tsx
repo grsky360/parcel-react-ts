@@ -1,41 +1,43 @@
-import { default as React, Component } from 'react'
+import { default as React, Component, SyntheticEvent } from 'react'
+import { TodoList } from '../store/TodoList'
+import { observer } from 'mobx-react';
 
 interface HelloProps {
-    msg?: string
+    todos: TodoList
 }
 
-interface HelloStates {
-    level: number
-}
-
-export default class Hello extends Component<HelloProps, HelloStates> {
+@observer
+export default class Hello extends Component<HelloProps> {
+    
     state = {
-        level: 0
+        title: ''
     }
 
-    decrement = () => {
-        this.setState((oldState) => {
-            return {
-                level: oldState.level - 1
-            }
+    handleChange({ target: { value } }) {
+        this.setState({
+            title: value
         })
     }
 
-    increment = () => {
-        this.setState((oldState) => {
-            return {
-                level: oldState.level + 1
-            }
+    handlePushClick() {
+        this.props.todos.push({
+            title: this.state.title
         })
+    }
+
+    handlePopClick() {
+        this.props.todos.pop()
     }
 
     render() {
         return (
             <div>
-                <h1>{ this.props.msg || this.props.children }</h1>
-                <h2>{ this.state.level }</h2>
-                <button onClick={this.decrement}>-</button>
-                <button onClick={this.increment}>+</button>
+                {this.props.todos.todos.map(todo => (
+                    <p>{todo.title}</p>
+                ))}
+                <input type="text" value={this.state.title} onChange={this.handleChange.bind(this)}/>
+                <button onClick={this.handlePushClick.bind(this)}>push</button>
+                <button onClick={this.handlePopClick.bind(this)}>pop</button>
             </div>
         )
     }

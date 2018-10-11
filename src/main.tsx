@@ -8,7 +8,9 @@ import './main.css'
 ((Component) => {
     ReactDOM.render(
         <AppContainer>
-            <Component />
+            <div>
+                <Component />
+            </div>
         </AppContainer>,
         document.getElementById('app')
     )
